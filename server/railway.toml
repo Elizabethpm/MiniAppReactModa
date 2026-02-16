@@ -1,11 +1,9 @@
-# Auto-deployed from GitHub on Railway
-# Environment: Production
-
 [build]
-  builder = "nixpacks"
+  builder = "dockerfile"
 
 [deploy]
   startCommand = "npm start"
   healthcheckPath = "/health"
+  healthcheckTimeout = 30
   restartPolicyType = "ON_FAILURE"
   restartPolicyMaxRetries = 3
