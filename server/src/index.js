@@ -22,7 +22,7 @@ import serviceRoutes     from './routes/service.routes.js'
 import { errorHandler, notFound } from './middleware/errorHandler.js'
 
 const app  = express()
-const PORT = process.env.PORT || 4000
+const PORT = parseInt(process.env.PORT) || 4000
 
 // ── Seguridad ─────────────────────────────────────────
 app.use(helmet({
