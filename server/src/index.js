@@ -24,18 +24,44 @@ import { errorHandler, notFound } from './middleware/errorHandler.js'
 const app  = express()
 const PORT = parseInt(process.env.PORT) || 4000
 
+// ── Configuración CORS ────────────────────────────────
+const corsOptions = {
+  origin: function (origin, callback) {
+    const allowedOrigins = [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      'https://miniappreactmoda.vercel.app',
+      /^https:\/\/miniappreactmoda-.*\.vercel\.app$/ // permite preview URLs
+    ]
+    
+    // En desarrollo o sin origin, permitir
+    if (!origin || process.env.NODE_ENV === 'development') {
+      return callback(null, true)
+    }
+    
+    // Verificar si el origen está permitido
+    const isAllowed = allowedOrigins.some(allowed => {
+      if (typeof allowed === 'string') return origin === allowed
+      if (allowed instanceof RegExp) return allowed.test(origin)
+      return false
+    })
+    
+    if (isAllowed) {
+      callback(null, true)
+    } else {
+      callback(new Error('CORS no permitido para este origen'))
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}
+
 // ── Seguridad ─────────────────────────────────────────
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }
 }))
-app.use(cors({
-  origin: process.env.CORS_ORIGIN || (process.env.NODE_ENV === 'production' 
-    ? 'https://miniappreactmoda.vercel.app'
-    : 'http://localhost:3000'),
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}))
+app.use(cors(corsOptions))
 
 // Rate limiting global
 const limiter = rateLimit({
