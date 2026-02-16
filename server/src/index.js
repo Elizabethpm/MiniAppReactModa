@@ -29,9 +29,9 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' }
 }))
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? process.env.FRONTEND_URL || 'https://*.vercel.app'
-    : process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: process.env.CORS_ORIGIN || (process.env.NODE_ENV === 'production' 
+    ? 'https://miniappreactmoda.vercel.app'
+    : 'http://localhost:3000'),
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
