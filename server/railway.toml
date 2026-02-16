@@ -2,7 +2,7 @@
 # Environment: Production
 
 [build]
-  command = "npm install"
+  builder = "nixpacks"
 
 [deploy]
   startCommand = "npm start"
