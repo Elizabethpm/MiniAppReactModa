@@ -114,9 +114,18 @@ export default function AppointmentsPage() {
       <div className="card p-0 overflow-hidden">
         {/* Días de la semana */}
         <div className="grid grid-cols-7 bg-gray-50 border-b">
-          {['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'].map((day) => (
-            <div key={day} className="p-2 text-center text-xs font-semibold text-gray-500 uppercase">
-              {day}
+          {[
+            { full: 'Lunes', short: 'L' },
+            { full: 'Martes', short: 'M' },
+            { full: 'Miércoles', short: 'X' },
+            { full: 'Jueves', short: 'J' },
+            { full: 'Viernes', short: 'V' },
+            { full: 'Sábado', short: 'S' },
+            { full: 'Domingo', short: 'D' },
+          ].map((day) => (
+            <div key={day.short} className="p-1.5 tablet:p-2 text-center text-xs font-semibold text-gray-500 uppercase">
+              <span className="hidden xs:inline">{day.full.slice(0, 3)}</span>
+              <span className="xs:hidden">{day.short}</span>
             </div>
           ))}
         </div>
@@ -133,13 +142,13 @@ export default function AppointmentsPage() {
                 key={idx}
                 onClick={() => handleDayClick(day)}
                 className={clsx(
-                  'min-h-[80px] tablet:min-h-[100px] p-1 border-b border-r cursor-pointer transition-colors hover:bg-gray-50',
+                  'min-h-[60px] xs:min-h-[70px] tablet:min-h-[100px] p-0.5 xs:p-1 border-b border-r cursor-pointer transition-colors hover:bg-gray-50',
                   !isCurrentMonth && 'bg-gray-50/50',
                   isToday && 'bg-primary-50/50'
                 )}
               >
                 <div className={clsx(
-                  'text-sm font-medium mb-1 w-7 h-7 flex items-center justify-center rounded-full',
+                  'text-xs xs:text-sm font-medium mb-0.5 xs:mb-1 w-5 h-5 xs:w-6 xs:h-6 tablet:w-7 tablet:h-7 flex items-center justify-center rounded-full',
                   isToday && 'bg-primary-500 text-white',
                   !isCurrentMonth && 'text-gray-400'
                 )}>

@@ -109,17 +109,17 @@ export default function ClientDetailPage() {
         </div>
       </div>
 
-      {/* ── Perfil del cliente ─────────────────────── */}
+      {/* ── Perfil del cliente ───────────────── */}
       <div className="card">
-        <div className="flex items-center gap-4 mb-4">
+        <div className="flex items-center gap-3 tablet:gap-4 mb-3 tablet:mb-4">
           {/* Avatar */}
-          <div className="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0 border border-primary-200">
-            {gender ? gender.emoji : <span className="text-primary-600 font-bold text-2xl">{clientData.name[0].toUpperCase()}</span>}
+          <div className="w-14 h-14 tablet:w-16 tablet:h-16 bg-primary-100 rounded-2xl flex items-center justify-center text-2xl tablet:text-3xl flex-shrink-0 border border-primary-200">
+            {gender ? gender.emoji : <span className="text-primary-600 font-bold text-xl tablet:text-2xl">{clientData.name[0].toUpperCase()}</span>}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="font-display text-lg font-semibold text-gray-900">{clientData.name}</p>
+            <p className="font-display text-base tablet:text-lg font-semibold text-gray-900 truncate">{clientData.name}</p>
             {gender && (
-              <span className={clsx('inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full border mt-1', gender.cls)}>
+              <span className={clsx('inline-flex items-center gap-1 text-xs font-medium px-2 tablet:px-2.5 py-1 rounded-full border mt-1', gender.cls)}>
                 {gender.emoji} {gender.label}
               </span>
             )}
@@ -215,7 +215,7 @@ export default function ClientDetailPage() {
                 </div>
 
                 {/* Grid de medidas clave */}
-                <div className="grid grid-cols-3 tablet:grid-cols-6 gap-2">
+                <div className="grid grid-cols-3 xs:grid-cols-4 tablet:grid-cols-6 gap-1.5 tablet:gap-2">
                   {[
                     { label: 'Busto',   val: m.upper?.busto },
                     { label: 'Cintura', val: m.upper?.cintura },
@@ -243,13 +243,13 @@ export default function ClientDetailPage() {
 
 function InfoRow({ icon: Icon, label, value, truncate = false }) {
   return (
-    <div className="flex items-center gap-2.5 p-2.5 rounded-xl bg-gray-50">
-      <div className="w-7 h-7 bg-white rounded-lg flex items-center justify-center border border-gray-100 flex-shrink-0">
-        <Icon className="w-3.5 h-3.5 text-primary-500" />
+    <div className="flex items-center gap-2 tablet:gap-2.5 p-2 tablet:p-2.5 rounded-xl bg-gray-50">
+      <div className="w-6 h-6 tablet:w-7 tablet:h-7 bg-white rounded-lg flex items-center justify-center border border-gray-100 flex-shrink-0">
+        <Icon className="w-3 h-3 tablet:w-3.5 tablet:h-3.5 text-primary-500" />
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-xs text-gray-400 leading-none mb-0.5">{label}</p>
-        <p className={clsx('text-sm font-medium text-gray-800', truncate && 'truncate')}>{value}</p>
+        <p className={clsx('text-xs tablet:text-sm font-medium text-gray-800', truncate && 'truncate')}>{value}</p>
       </div>
     </div>
   )
@@ -257,9 +257,9 @@ function InfoRow({ icon: Icon, label, value, truncate = false }) {
 
 function MeasurePill({ label, value }) {
   return (
-    <div className="bg-primary-50 border border-primary-100 rounded-xl px-2 py-2 text-center">
-      <p className="text-xs text-primary-400 mb-0.5 font-medium">{label}</p>
-      <p className="text-sm font-bold text-primary-700">{value} <span className="text-xs font-normal">cm</span></p>
+    <div className="bg-primary-50 border border-primary-100 rounded-lg tablet:rounded-xl px-1.5 tablet:px-2 py-1.5 tablet:py-2 text-center">
+      <p className="text-[10px] tablet:text-xs text-primary-400 mb-0.5 font-medium truncate">{label}</p>
+      <p className="text-xs tablet:text-sm font-bold text-primary-700">{value} <span className="text-[10px] tablet:text-xs font-normal">cm</span></p>
     </div>
   )
 }

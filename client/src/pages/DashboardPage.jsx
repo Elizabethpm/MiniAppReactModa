@@ -79,25 +79,25 @@ export default function DashboardPage() {
   const greeting = hour < 12 ? 'Buenos días' : hour < 18 ? 'Buenas tardes' : 'Buenas noches'
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
+    <div className="space-y-5 tablet:space-y-6 max-w-4xl mx-auto">
       {/* ── Header ── */}
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="font-display text-2xl tablet:text-3xl font-bold text-gray-900">
+      <div className="flex items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h1 className="page-title">
             {greeting}, {user?.name?.split(' ')[0]}
           </h1>
-          <p className="text-gray-500 mt-0.5 capitalize">
+          <p className="text-sm tablet:text-base text-gray-500 mt-0.5 capitalize truncate">
             {format(new Date(), "EEEE d 'de' MMMM", { locale: es })}
           </p>
         </div>
         <Link to="/clients/new" className="btn-primary flex-shrink-0">
           <Plus className="w-5 h-5" />
-          <span className="hidden xs:inline">Nuevo cliente</span>
+          <span className="hidden xs:inline">Nuevo</span>
         </Link>
       </div>
 
       {/* ── Estadísticas ── */}
-      <div className="grid grid-cols-2 tablet:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 tablet:grid-cols-4 gap-3 tablet:gap-4">
         <StatCard
           icon={Users}
           label="Total clientes"
@@ -134,22 +134,22 @@ export default function DashboardPage() {
 
       {/* ── Banner de acción rápida ── */}
       <div className="card overflow-hidden p-0">
-        <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-6 text-white">
-          <div className="flex items-center justify-between gap-4">
-            <div>
+        <div className="bg-gradient-to-r from-primary-600 to-primary-800 p-4 tablet:p-6 text-white">
+          <div className="flex items-start tablet:items-center justify-between gap-3">
+            <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <Sparkles className="w-4 h-4 text-primary-200" />
-                <span className="text-primary-200 text-sm font-medium">Atelier Elizabeth</span>
+                <Sparkles className="w-3.5 h-3.5 tablet:w-4 tablet:h-4 text-primary-200" />
+                <span className="text-primary-200 text-xs tablet:text-sm font-medium">Atelier Elizabeth</span>
               </div>
-              <h3 className="font-display text-lg font-semibold">Nueva sesión de medidas</h3>
-              <p className="text-primary-200 text-sm mt-0.5">Registra un nuevo cliente o continúa con uno existente</p>
+              <h3 className="font-display text-base tablet:text-lg font-semibold">Nueva sesión de medidas</h3>
+              <p className="text-primary-200 text-xs tablet:text-sm mt-0.5 hidden xs:block">Registra un nuevo cliente o continúa con uno existente</p>
             </div>
             <Link
               to="/clients/new"
-              className="btn-secondary bg-white/10 text-white border-white/20 hover:bg-white/20 flex-shrink-0 backdrop-blur-sm"
+              className="btn-secondary bg-white/10 text-white border-white/20 hover:bg-white/20 flex-shrink-0 backdrop-blur-sm text-sm tablet:text-base py-2 tablet:py-3"
             >
-              <Plus className="w-5 h-5" />
-              Comenzar
+              <Plus className="w-4 h-4 tablet:w-5 tablet:h-5" />
+              <span className="hidden xs:inline">Comenzar</span>
             </Link>
           </div>
         </div>

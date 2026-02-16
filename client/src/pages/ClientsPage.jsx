@@ -22,13 +22,13 @@ export default function ClientsPage() {
   const pagination = data?.pagination || {}
 
   return (
-    <div className="space-y-5 max-w-3xl mx-auto">
+    <div className="space-y-4 tablet:space-y-5 max-w-3xl mx-auto">
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
-        <h1 className="font-display text-2xl tablet:text-3xl font-bold text-gray-900">Clientes</h1>
+        <h1 className="page-title">Clientes</h1>
         <Link to="/clients/new" className="btn-primary flex-shrink-0">
           <Plus className="w-5 h-5" />
-          <span className="hidden xs:inline">Nueva</span>
+          <span className="hidden xs:inline">Nuevo</span>
         </Link>
       </div>
 
@@ -46,7 +46,7 @@ export default function ClientsPage() {
 
       {/* Lista */}
       {isLoading ? (
-        <div className="space-y-3">
+        <div className="space-y-2 tablet:space-y-3">
           {[1,2,3,4,5].map((i) => (
             <div key={i} className="card animate-pulse flex items-center gap-4">
               <div className="w-12 h-12 bg-gray-200 rounded-full flex-shrink-0" />

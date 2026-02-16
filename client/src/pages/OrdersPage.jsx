@@ -108,23 +108,23 @@ export default function OrdersPage() {
       </div>
 
       {/* Kanban Board */}
-      <div className="overflow-x-auto pb-4">
-        <div className="flex gap-4 px-4 min-w-max">
+      <div className="mobile-scroll">
+        <div className="flex gap-3 tablet:gap-4 min-w-max tablet:min-w-0">
           {COLUMNS.map((column) => (
             <div
               key={column.id}
               onDragOver={handleDragOver}
               onDrop={(e) => handleDrop(e, column.id)}
               className={clsx(
-                'w-72 flex-shrink-0 bg-gray-50 rounded-xl p-3 min-h-[400px]',
+                'w-64 tablet:w-72 flex-shrink-0 bg-gray-50 rounded-xl p-2.5 tablet:p-3 min-h-[400px]',
                 draggedOrder && draggedOrder.status !== column.id && 'ring-2 ring-primary-300 ring-dashed'
               )}
             >
               {/* Column header */}
-              <div className="flex items-center gap-2 mb-3">
-                <div className={clsx('w-3 h-3 rounded-full', column.color)} />
-                <h3 className="font-semibold text-gray-700">{column.label}</h3>
-                <span className="ml-auto bg-gray-200 text-gray-600 text-xs font-bold px-2 py-0.5 rounded-full">
+              <div className="flex items-center gap-2 mb-2.5 tablet:mb-3">
+                <div className={clsx('w-2.5 h-2.5 tablet:w-3 tablet:h-3 rounded-full', column.color)} />
+                <h3 className="text-sm tablet:text-base font-semibold text-gray-700">{column.label}</h3>
+                <span className="ml-auto bg-gray-200 text-gray-600 text-xs font-bold px-1.5 tablet:px-2 py-0.5 rounded-full">
                   {kanban[column.id]?.length || 0}
                 </span>
               </div>
