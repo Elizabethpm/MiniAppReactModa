@@ -67,6 +67,11 @@ if (process.env.NODE_ENV !== 'production') {
 // ── Archivos estáticos (fotos) ────────────────────────
 app.use('/uploads', express.static('uploads'))
 
+// ── Health check (para Railway) ───────────────────────
+app.get('/health', (_req, res) => {
+  res.status(200).json({ status: 'ok', timestamp: new Date().toISOString() })
+})
+
 // ── Rutas de la API ───────────────────────────────────
 app.use('/api/auth',         authRoutes)
 app.use('/api/clients',      clientRoutes)
