@@ -278,11 +278,13 @@ export function generatePDF(client, measure, studio = {}) {
   const allRows = [upperRows, armRows, pantsRows, lowerRows]
   const totalMeasures = allRows.flat().filter(([, v]) => v !== '—').length
 
-  ensureSpace(14)
+  ensureSpace(12)
+  y -= 2 // Reducir espacio antes del resumen
+  
   doc.setFillColor(247, 246, 240)
   doc.setDrawColor(...LIGHT)
   const sw = PAGE_W - MARGIN * 2
-  doc.roundedRect(MARGIN, y, sw, 10, 1.5, 1.5, 'FD')
+  doc.roundedRect(MARGIN, y, sw, 8, 1.5, 1.5, 'FD')
 
   doc.setFontSize(7.5)
   doc.setFont('helvetica', 'bold')
@@ -297,9 +299,9 @@ export function generatePDF(client, measure, studio = {}) {
 
   const spacing = sw / (bits.length + 1)
   bits.forEach((txt, i) => {
-    doc.text(txt, MARGIN + spacing * (i + 1), y + 6.5, { align: 'center' })
+    doc.text(txt, MARGIN + spacing * (i + 1), y + 5.2, { align: 'center' })
   })
-  y += 14
+  y += 10
 
   // ══════════════════════════════════════════════════════
   //  NOTAS TÉCNICAS
