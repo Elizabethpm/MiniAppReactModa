@@ -76,7 +76,7 @@ export async function createMeasure(req, res, next) {
     await verifyClientOwnership(req.params.clientId, req.user._id)
 
     const {
-      upper, lower, fitType, fabricType,
+      upper, arms, pants, lower, fitType, fabricType,
       technicalNotes, referencePhotoUrl, label
     } = req.body
 
@@ -84,6 +84,8 @@ export async function createMeasure(req, res, next) {
       client:   req.params.clientId,
       designer: req.user._id,
       upper,
+      arms,
+      pants,
       lower,
       fitType,
       fabricType,
